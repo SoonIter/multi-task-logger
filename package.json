@@ -1,0 +1,78 @@
+{
+  "name": "@nrr/multi-task-logger",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "multi-task-logger",
+  "author": {
+    "name": "SoonIter",
+    "email": "sooniter@gmail.com"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/SoonIter/multi-task-logger",
+  "bugs": {
+    "url": "https://github.com/SoonIter/multi-task-logger/issues"
+  },
+  "keywords": [
+    "react",
+    "usePagination",
+    "vue"
+  ],
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "prepare": "simple-git-hooks",
+    "start": "nr build --watch",
+    "build": "tsup ./src/index.ts --format esm,cjs --dts --clean",
+    "release": "nr prerelease && nr build && pnpm publish",
+    "prerelease": "nr lint:fix && nr test:once",
+    "test": "vitest",
+    "test:once": "vitest run",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint src/**/*.*",
+    "lint:fix": "eslint src/**/*.* --fix"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "is-ci": "^3.0.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.39.3",
+    "@antfu/ni": "^0.21.3",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@types/is-ci": "^3.0.0",
+    "@types/node": "^20.2.3",
+    "@vitejs/plugin-react": "^4.0.0",
+    "@vitest/ui": "^0.31.1",
+    "c8": "^7.13.0",
+    "chalk": "^4.0.0",
+    "cli-cursor": "4.0.0",
+    "cli-spinners": "2.9.0",
+    "eslint": "^8.41.0",
+    "figures": "5.0.0",
+    "lint-staged": "13.2.2",
+    "simple-git-hooks": "^2.8.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "vite": "^4",
+    "vitest": "^0.31.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,md}": [
+      "eslint --fix"
+    ]
+  }
+}
